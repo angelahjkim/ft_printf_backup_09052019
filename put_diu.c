@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_diu.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/05 18:02:39 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/06 02:00:35 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,108 +63,6 @@ void	put_int_value(t_format *f)
 			return ;
 		ft_putnbr(f->d_arg);
 	}
-}
-
-void	put_pad_int(t_format *f)
-{
-		if (FLAGS & F_ZERO)
-	{
-		put_pad_int_zero(f);
-		return ;
-	}
-	
-	while (P_SPACE-- > 0)
-	{
-		write(1, " ", 1);
-		COUNT++;
-	}
-
-	if (!(FLAGS & F_ZERO))
-		(f->d_arg >= 0) ? put_prefix_int(f) : put_prefix_int_neg(f);
-	while (P_ZERO-- > 0)
-	{
-		write(1, "0", 1);
-		COUNT++;
-	}
-	put_int_value(f);
-}
-
-void	put_pad_int_zero(t_format *f)
-{
-	(f->d_arg >= 0) ? put_prefix_int(f) : put_prefix_int_neg(f);
-	while (P_ZERO-- > 0)
-	{
-		if (FLAGS & F_ZERO)
-		{
-			(f->p && PREC > LEN) ? write(1, " ", 1) : write(1, "0", 1);
-		}
-		else
-			write(1, " ", 1);
-		COUNT++;
-	}
-	while (P_SPACE-- > 0)
-	{
-		if (FLAGS & F_ZERO)
-		{
-			if (f->p)
-				(PREC > LEN) ? write(1, "0", 1) : write(1, " ", 1);
-			else
-				write(1, "0", 1);
-		}
-		else
-			write(1, " ", 1);
-		COUNT++;
-	}
-	put_int_value(f);
-}
-
-void	put_prefix_int(t_format *f)
-{
-	if (f->d_arg >= 0)
-	{
-		if (FLAGS & F_SPACE)
-		{
-			write(1, " ", 1);
-			COUNT++;
-		}
-		else if (FLAGS & F_PLUS)
-		{
-			write(1, "+", 1);
-			COUNT++;
-		}
-	}
-}
-
-void	put_pad_int_minus(t_format *f)
-{
-	(f->d_arg >= 0) ? put_prefix_int(f) : put_prefix_int_neg(f);
-	while (P_ZERO-- > 0)
-	{
-		write(1, "0", 1);
-		COUNT++;
-	}
-	ft_putnbr(f->d_arg);
-	while (P_SPACE-- > 0)
-	{
-		write(1, " ", 1);
-		COUNT++;
-	}
-}
-
-void	put_prefix_int_neg(t_format *f)
-{
-	if (f->d_arg < 0)
-	{
-		write(1, "-", 1);
-		if (f->d_arg+1 == -9223372036854775807)
-		{
-			write(1, "9223372036854775808", 19);
-			return ;
-		}
-		if (f->spec != 'u')
-			f->d_arg *= -1;
-	}
-	LEN++;
 }
 
 void	put_unsigned(char **format, t_format *f, va_list args)

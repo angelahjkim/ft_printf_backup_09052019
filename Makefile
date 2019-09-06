@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: angkim <angkim@student.42.fr>              +#+  +:+       +#+         #
+#    By: angela <angela@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/23 12:44:36 by angkim            #+#    #+#              #
-#    Updated: 2019/09/02 02:18:45 by angkim           ###   ########.fr        #
+#    Updated: 2019/09/06 01:35:03 by angela           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS =	ft_printf.c \
 		put_cp.c \
 		put_s.c \
 		put_diu.c \
+		put_int_pad.c \
 		put_ox_xx.c \
 		put_f.c \
 		ft_atoi.c \

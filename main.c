@@ -14,8 +14,11 @@ int main(void)
 	// int *ptr = &d;
 
 
-	printf("pf\t<%04.5i>\n", 42);
-	ft_printf("ft\t<%04.5i>\n", 42);
+	printf("pf\t<%03.2i>\n", 1);
+	ft_printf("ft\t<%03.2i>\n", 1);
+
+	// printf("pf\t<%04.5i>\n", 42);
+	// ft_printf("ft\t<%04.5i>\n", 42);
 
 
 // ft_printf("@moulitest: %.d %.0d", 0, 0);
