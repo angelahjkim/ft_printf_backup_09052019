@@ -13,7 +13,9 @@ int main(void)
     // char str[] = "hello";
 	// int *ptr = &d;
 
-  ft_printf("%.5u\n", 42);
+
+	printf("pf\t<%04.5i>\n", 42);
+	ft_printf("ft\t<%04.5i>\n", 42);
 
 
 // ft_printf("@moulitest: %.d %.0d", 0, 0);
