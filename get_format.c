@@ -6,7 +6,7 @@
 /*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:33:33 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/03 02:18:20 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/06 00:10:57 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void	get_precision(char **format, t_format *f)
 		(*format)++;
 		if (ft_isdigit(**format))
 		{
-			// while (**format == '0')
+			//while (**format == '0')
 			// 	(*format)++;
 			if (ft_isdigit(**format))
 				f->p_val = ft_atoi(*format);
-			// else
-			// 	f->p_val = 0;
+			//else
+			//	f->p_val = 0;
 			(*format) += ft_digitcount(f->p_val);
 		}
 		else
