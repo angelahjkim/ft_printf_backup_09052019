@@ -94,7 +94,7 @@ void	put_pad_add_minus(t_format *f, long *add_str);
 void	put_int(char **format, t_format *f, va_list args);
 void	put_pad_int(t_format *f);
 void	put_pad_int_minus(t_format *f);
-void	put_pad_int_zero(t_format *f);
+// void	put_pad_int_zero(t_format *f);
 void	put_prefix_int(t_format *f);
 void	put_prefix_int_neg(t_format *f);
 void	put_int_value (t_format *f);
