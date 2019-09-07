@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/06 02:00:35 by angela           ###   ########.fr       */
+/*   Updated: 2019/09/06 17:22:59 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,18 @@ void	put_int(char **format, t_format *f, va_list args)
 		if (f->d_arg >= 0)
 			WIDTH--;
 	}
-// printf("prec: %d\twidth: %d\tlen: %d\n", PREC, WIDTH, LEN);
-	P_ZERO = PREC - LEN;
-	P_SPACE = (WIDTH -= (PREC > LEN) ? PREC : LEN);
-// printf("zeros: %d\tspaces: %d\n", P_ZERO, P_SPACE);
+// printf("\n\tneg: %d\tlen: %d\twidth: %d\tprec: %d\n", (f->d_arg < 0) ? 1 : 0, LEN, WIDTH, PREC);
+	if (!(FLAGS & F_ZERO) || (FLAGS & F_ZERO && f->p))
+	{
+		P_ZERO = PREC - LEN;
+		P_SPACE = (WIDTH -= (PREC > LEN) ? PREC : LEN);
+	}
+	else if (FLAGS & F_ZERO)
+	{
+		P_ZERO = (WIDTH > PREC) ? (WIDTH - LEN) : (PREC - LEN);
+		P_SPACE = 0;
+	}
+// printf("\n\tspace: %d\tzero: %d\n", P_SPACE, P_ZERO);
 	if (!(FLAGS & F_MINUS))
 		put_pad_int(f);
 	else if (FLAGS & F_MINUS)
@@ -59,7 +67,7 @@ void	put_int_value(t_format *f)
 	}
 	else
 	{
-		if ((f->d_arg)+1 == -9223372036854775807)
+		if ((f->d_arg) + 1 == -9223372036854775807)
 			return ;
 		ft_putnbr(f->d_arg);
 	}

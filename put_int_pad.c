@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 01:34:18 by angela            #+#    #+#             */
-/*   Updated: 2019/09/06 02:04:25 by angela           ###   ########.fr       */
+/*   Updated: 2019/09/06 02:04:23by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	put_pad_int(t_format *f)
 {
-	if (FLAGS & F_ZERO)
-	{
-		put_pad_int_zero(f);
-		return ;
-	}
+	// if (FLAGS & F_ZERO)
+	// {
+	// 	put_pad_int_zero(f);
+	// 	return ;
+	// }
 	while (P_SPACE-- > 0)
 	{
 		write(1, " ", 1);
 		COUNT++;
 	}
-	if (!(FLAGS & F_ZERO))
+	// if (!(FLAGS & F_ZERO))
 		(f->d_arg >= 0) ? put_prefix_int(f) : put_prefix_int_neg(f);
 	while (P_ZERO-- > 0)
 	{

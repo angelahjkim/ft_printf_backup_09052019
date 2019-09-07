@@ -12,16 +12,6 @@
 
 #include "ft_printf.h"
 
-// get argument (into largest needed data type: long double)
-// length modifier function when storing argument value
-// understand flags: 
-    // +, space, -, # (forces result to include '.'
-// put integer component & '.'
-// width and precision algorithm for fractional component
-    // width: minumum num of characters to print total (including prefix and .)
-    // prec: minimum num of digits AFTER decimal
-// algorithm for rounding
-
 int		get_mod_arg_f(t_format *f, va_list args, long double *n, char **s)
 {
 	uint64_t	whole;
@@ -77,10 +67,7 @@ void	put_float(char **format, t_format *f, va_list args)
 	{
 		f_arg *= 10;
 		cast = (f_arg > 0) ? 0.5 : -0.5;
-
-// printf("\tf arg: %Lf\n", f_arg);
 		f_str[i++] = ((uint64_t)(f_arg + cast) % 10) + 48;
-// printf("\tdigit: %c\n", (char)((uint64_t)(f_arg + cast) % 10) + 48);
 		f_arg = f_arg - (uint64_t)f_arg;
 	}
 	f_str[i] = '\0';

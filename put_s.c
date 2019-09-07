@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   put_s.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 00:32:26 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/05 23:34:10 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/06 02:46:06 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-// get argument
-// get LEN, WIDTH, and PRECISION values
-// determine number of characters to print (COUNT)
-	// if no P	--> print LEN characters
-	// if P		--> print P characters up to LEN
-// determine space padding
-	// WIDTH - printed characters
-// keep track of COUNT at the end after characters printed
-// reset struct
 
 void	put_str(char **format, t_format *f, va_list args)
 {
@@ -28,11 +18,7 @@ void	put_str(char **format, t_format *f, va_list args)
 	int		to_print;
 	int		str_null;
 
-	// if (MOD == 'l')
-	// 	s_arg = (wchar_t *)va_arg(args, char *);
-	// else
-		s_arg = (char *)va_arg(args, char *);
-	
+	s_arg = (char *)va_arg(args, char *);
 	to_print = 0;
 	str_null = 0;
 	if (s_arg == NULL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/05 18:10:08 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/06 02:46:14 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	put_padding(t_format *f)
 	}
 	if (PREC > LEN)
 		WIDTH -= (PREC - LEN);
-// printf("w: %d\tp: %d\tlen: %d\n", WIDTH, PREC, LEN);
 	while (LEN < WIDTH && PREC < WIDTH)
 	{
 		if (FLAGS & F_ZERO)

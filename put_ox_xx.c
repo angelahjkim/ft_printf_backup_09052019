@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_ox_xx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/05 22:26:35 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/06 02:45:09 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,6 @@ void	put_ox_zero(t_format *f)
 			else
 				return ;
 		}
-		// else if (f->spec == 'o' && (f->p && (f->p_val == 1 || f->p_val == 0)))
-			// write(1, "0", 1);
 		else if (f->spec == 'o')
 		{
 			if (f->p && (PREC == 0 || PREC == 1))

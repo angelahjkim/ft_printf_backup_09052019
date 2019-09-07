@@ -22,20 +22,20 @@
 
 enum	e_flags
 {
-	F_SPACE = 1 << 0,       // F_SPACE = 1
-	F_PLUS = 1 << 1,        // F_PLUS = 2
-	F_ZERO = 1 << 2,        // F_ZERO = 4
-	F_MINUS = 1 << 3,       // F_MINUS = 8
-	F_HASH = 1 << 4         // F_HASH = 16
+	F_SPACE = 1 << 0,
+	F_PLUS = 1 << 1,
+	F_ZERO = 1 << 2,
+	F_MINUS = 1 << 3,
+	F_HASH = 1 << 4
 };
 
 enum	e_mods
 {
-	M_L = 1 << 0,			// M_L = 1
-	M_LL = 1 << 1,			// M_LL = 2
-	M_H = 1 << 2,			// M_H = 4
-	M_HH = 1 << 3,			// M_HH = 8
-	M_LD = 1 << 4			// M_LD = 16
+	M_L = 1 << 0,
+	M_LL = 1 << 1,
+	M_H = 1 << 2,
+	M_HH = 1 << 3,
+	M_LD = 1 << 4
 };
 
 typedef struct	s_format
