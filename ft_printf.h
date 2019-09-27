@@ -22,11 +22,11 @@
 
 enum	e_flags
 {
-	F_SPACE = 1 << 0,
-	F_PLUS = 1 << 1,
-	F_ZERO = 1 << 2,
-	F_MINUS = 1 << 3,
-	F_HASH = 1 << 4
+	F_SPACE = 1 << 0,		// SPACE	1
+	F_PLUS = 1 << 1,		// PLUS		2
+	F_ZERO = 1 << 2,		// ZERO		4
+	F_MINUS = 1 << 3,		// MINUS	8
+	F_HASH = 1 << 4			// HASH		16
 };
 
 enum	e_mods

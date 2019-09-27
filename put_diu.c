@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_diu.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/06 17:22:59 by angela           ###   ########.fr       */
+/*   Updated: 2019/09/27 12:49:07 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,3 +91,22 @@ void	put_unsigned(char **format, t_format *f, va_list args)
 	(*format)++;
 	reset_struct(f);
 }
+
+// void	put_unsigned(char **format, t_format *f, va_list args)
+// {
+// 	get_mod_arg_u(f, args);
+// 	LEN = ft_digitcount(f->u_arg);
+// 	if (f->flags & F_MINUS)
+// 	{
+// 		ft_putnbr(f->u_arg);
+// 		put_padding(f);
+// 	}
+// 	else
+// 	{
+// 		put_padding(f);
+// 		ft_putnbr_u(f->u_arg);
+// 	}
+// 	f->count += ft_digitcount_u(f->u_arg);
+// 	(*format)++;
+// 	reset_struct(f);
+// }

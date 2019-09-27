@@ -6,7 +6,7 @@
 /*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 19:49:26 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/05 17:41:49 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/27 12:47:39 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		do_work(char *format, va_list args)
 		{
 			get_format(&format, f);
 			check_percent(&format, f);
-// printf("spec: %c\twidth: %d\tp: %d\tprec: %d\tformat: %c\n", f->spec, WIDTH, f->p, PREC, *format);
+printf("flags: %d\tspec: %c\twidth: %d\tp: %d\tprec: %d\tformat: %c\n", f->flags, f->spec, WIDTH, f->p, PREC, *format);
 			while (++f->arg_num < NUM_CONVS)
 			{
 				if (*format == g_checkarg[f->arg_num].arg)

@@ -19,13 +19,19 @@ void	put_pad_int(t_format *f)
 	// 	put_pad_int_zero(f);
 	// 	return ;
 	// }
+	if (f->d_arg == 0 && f->p == 1 && f->p_val <= 0)
+	{
+		P_SPACE++;
+		WIDTH = -1;
+	}
+
 	while (P_SPACE-- > 0)
 	{
 		write(1, " ", 1);
 		COUNT++;
 	}
-	// if (!(FLAGS & F_ZERO))
-		(f->d_arg >= 0) ? put_prefix_int(f) : put_prefix_int_neg(f);
+	// if (!(FLAGS & F_ZERO))	
+	(f->d_arg >= 0) ? put_prefix_int(f) : put_prefix_int_neg(f);
 	while (P_ZERO-- > 0)
 	{
 		write(1, "0", 1);
@@ -42,7 +48,10 @@ void	put_pad_int_minus(t_format *f)
 		write(1, "0", 1);
 		COUNT++;
 	}
-	ft_putnbr(f->d_arg);
+	if (f->d_arg == 0 && f->p == 1 && f->p_val <= 0)
+		P_SPACE++;
+	else
+		ft_putnbr(f->d_arg);
 	while (P_SPACE-- > 0)
 	{
 		write(1, " ", 1);

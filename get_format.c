@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_format.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:33:33 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/06 02:43:57 by angela           ###   ########.fr       */
+/*   Updated: 2019/09/27 12:22:52 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	get_precision(char **format, t_format *f)
 			(*format) += ft_digitcount(f->p_val);
 		}
 		else
-			f->p_val = 1;
+			f->p_val = 0;
+			// f->p_val = 1;
 	}
 	get_mod(format, f);
 }
