@@ -6,7 +6,7 @@
 /*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/27 12:49:07 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/27 13:03:34 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	put_int_value(t_format *f)
 	{
 		if ((f->d_arg) + 1 == -9223372036854775807)
 			return ;
-		ft_putnbr(f->d_arg);
+		(f->spec == 'u') ? ft_putnbr(f->u_arg) : ft_putnbr(f->d_arg);
 	}
 }
 
@@ -77,17 +77,22 @@ void	put_unsigned(char **format, t_format *f, va_list args)
 {
 	get_mod_arg_u(f, args);
 	LEN = ft_digitcount(f->u_arg);
-	if (f->flags & F_MINUS)
+	if (!(FLAGS & F_ZERO) || (FLAGS & F_ZERO && f->p))
 	{
-		ft_putnbr(f->u_arg);
-		put_padding(f);
+		P_ZERO = PREC - LEN;
+		P_SPACE = (WIDTH -= (PREC > LEN) ? PREC : LEN);
 	}
-	else
+	else if (FLAGS & F_ZERO)
 	{
-		put_padding(f);
-		ft_putnbr_u(f->u_arg);
+		P_ZERO = (WIDTH > PREC) ? (WIDTH - LEN) : (PREC - LEN);
+		P_SPACE = 0;
 	}
-	f->count += ft_digitcount_u(f->u_arg);
+// printf("\n\tspace: %d\tzero: %d\n", P_SPACE, P_ZERO);
+	if (!(FLAGS & F_MINUS))
+		put_pad_int(f);
+	else if (FLAGS & F_MINUS)
+		put_pad_int_minus(f);
+	COUNT += ft_digitcount(f->d_arg);
 	(*format)++;
 	reset_struct(f);
 }

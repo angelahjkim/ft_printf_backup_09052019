@@ -51,42 +51,13 @@ void	put_pad_int_minus(t_format *f)
 	if (f->d_arg == 0 && f->p == 1 && f->p_val <= 0)
 		P_SPACE++;
 	else
-		ft_putnbr(f->d_arg);
+		(f->spec == 'u') ? ft_putnbr(f->u_arg) : ft_putnbr(f->d_arg);
 	while (P_SPACE-- > 0)
 	{
 		write(1, " ", 1);
 		COUNT++;
 	}
 }
-
-// void	put_pad_int_zero(t_format *f)
-// {
-// 	(f->d_arg >= 0) ? put_prefix_int(f) : put_prefix_int_neg(f);
-// 	while (P_ZERO-- > 0)
-// 	{
-// 		if (FLAGS & F_ZERO)
-// 		{
-// 			(f->p && PREC > LEN) ? write(1, " ", 1) : write(1, "0", 1);
-// 		}
-// 		else
-// 			write(1, " ", 1);
-// 		COUNT++;
-// 	}
-// 	while (P_SPACE-- > 0)
-// 	{
-// 		if (FLAGS & F_ZERO)
-// 		{
-// 			if (f->p)
-// 				(PREC > LEN) ? write(1, "0", 1) : write(1, " ", 1);
-// 			else
-// 				write(1, "0", 1);
-// 		}
-// 		else
-// 			write(1, " ", 1);
-// 		COUNT++;
-// 	}
-// 	put_int_value(f);
-// }
 
 void	put_prefix_int(t_format *f)
 {
