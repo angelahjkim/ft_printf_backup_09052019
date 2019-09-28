@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
+/*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/06 02:46:14 by angela           ###   ########.fr       */
+/*   Updated: 2019/09/27 14:30:07 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,23 +79,4 @@ void	put_prefix(t_format *f)
 		put_prefix_ox_xx(f);
 }
 
-void	put_prefix_ox_xx(t_format *f)
-{
-	while (PREC > LEN)
-	{
-		ft_putnbr(0);
-		COUNT++;
-		PREC--;
-		WIDTH--;
-	}
-	if (FLAGS & F_HASH)
-	{
-		ft_putchar('0');
-		if (f->spec == 'x')
-			ft_putchar('x');
-		else if (f->spec == 'X')
-			ft_putchar('X');
-		(f->spec == 'o') ? (COUNT++) : (COUNT += 2);
-		FLAGS -= F_HASH;
-	}
-}
+

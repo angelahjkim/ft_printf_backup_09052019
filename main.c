@@ -15,9 +15,6 @@ int main(void)
 
 
 
-printf("pf\t<%8.5u>\n", 42);
-ft_printf("ft\t<%8.5u>\n", 42);
-
 
 // ft_printf("@moulitest: %.d %.0d", 0, 0);
 

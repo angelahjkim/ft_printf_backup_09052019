@@ -6,13 +6,13 @@
 /*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:37:38 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/01 17:02:57 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/27 15:08:03 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putoctal(unsigned int n)
+void	ft_putoctal(uint64_t n)
 {
 	char	octal_digits[] = "01234567";
 

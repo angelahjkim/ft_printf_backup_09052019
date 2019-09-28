@@ -106,6 +106,7 @@ void	put_octal(char **format, t_format *f, va_list args);
 void	put_octal_flags(t_format *f);
 void	put_prefix(t_format *f);
 void	put_prefix_ox_xx(t_format *f);
+void	put_ox_value(t_format *f);
 void	put_padding(t_format *f);
 void	put_float(char **format, t_format *f, va_list args);
 int		ft_atoi(const char *str);
@@ -120,7 +121,7 @@ void	ft_putchar(char c);
 void	ft_putstr(char const *s);
 void	ft_puthex_lower(uint64_t n);
 void	ft_puthex_upper(uint64_t n);
-void	ft_putoctal(unsigned int n);
+void	ft_putoctal(uint64_t n);
 void	ft_puthex_long(long n);
 void	ft_hexlen(long n, int *count);
 
