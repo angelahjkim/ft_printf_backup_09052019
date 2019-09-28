@@ -6,7 +6,7 @@
 /*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/27 20:25:55 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/28 11:51:08 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,8 @@ void	put_octal_flags(t_format *f)
 // printf("\n\tneg: %d\tlen: %d\twidth: %d\tprec: %d\n", (f->d_arg < 0) ? 1 : 0, LEN, WIDTH, PREC);
 
 	// if (f->flags & F_HASH && !f->p && f->ox_arg)
-	
-	if (f->flags & F_HASH)
-		WIDTH--;
-	
-// printf("2 width: %d\n", WIDTH);
-	
+
+		
 	if (!(FLAGS & F_ZERO) || (FLAGS & F_ZERO && f->p))
 	{
 		P_ZERO = PREC - LEN;
@@ -117,11 +113,18 @@ void	put_octal_flags(t_format *f)
 		P_SPACE = 0;
 
 	}
-// printf("\n\tspace: %d\tzero: %d\tlen: %d\n", P_SPACE, P_ZERO, LEN);
+// printf("\n\tspace: %d\tzero: %d\tlen: %d\tw: %d\tp: %d\n", P_SPACE, P_ZERO, LEN, WIDTH, PREC);
 	// if (!(FLAGS & F_MINUS))
 
-if (P_ZERO == 0 && (PREC - WIDTH > 0))
-	P_ZERO++;
+if (f->flags & F_HASH)
+	put_hash_flag(f);
+	// WIDTH--;
+
+// if (P_ZERO == 0 && (PREC - WIDTH > 0))
+// 	P_ZERO++;
+
+// if (f->flags & F_HASH)
+// 	put_hash_flag(f);
 
 
 	if (!(FLAGS & F_MINUS))
@@ -132,6 +135,47 @@ if (P_ZERO == 0 && (PREC - WIDTH > 0))
 	// if (f->ox_arg == 0)
 	// 	put_ox_zero(f);
 	
+}
+
+void	put_hash_flag(t_format *f)
+{
+	int min_chars;
+	
+	min_chars = LEN + 1;
+	if (P_SPACE > 0)
+		min_chars += P_SPACE;
+	if (P_ZERO > 0)
+		min_chars += P_ZERO;
+// printf("min chars: %d\twidth: %d\n", min_chars, WIDTH);
+
+	if (WIDTH >= PREC && min_chars > WIDTH)
+		P_SPACE--;
+// printf("width: %d\n", WIDTH);
+}
+
+void	put_prefix_ox_xx(t_format *f)
+{
+	while (PREC > LEN)
+	{
+		ft_putnbr(0);
+		COUNT++;
+		PREC--;
+		P_ZERO--;
+	}
+// printf("\n\tspace: %d\tzero: %d\tprec: %d\n", P_SPACE, P_ZERO, PREC);
+
+	if (FLAGS & F_HASH)
+	{
+		if (P_ZERO)
+			ft_putchar('0');
+		if (f->spec == 'x')
+			ft_putchar('x');
+		else if (f->spec == 'X')
+			ft_putchar('X');
+		(f->spec == 'o') ? (COUNT++) : (COUNT += 2);
+		// FLAGS -= F_HASH;
+		// P_ZERO--;
+	}
 }
 
 void	put_ox_zero(t_format *f)
@@ -158,31 +202,6 @@ void	put_ox_zero(t_format *f)
 	else if (f->p && f->p_val != -1)
 		return ;
 	COUNT++;
-}
-
-void	put_prefix_ox_xx(t_format *f)
-{
-	while (PREC > LEN)
-	{
-		ft_putnbr(0);
-		COUNT++;
-		PREC--;
-		P_ZERO--;
-	}
-// printf("\n\tspace: %d\tzero: %dprec: %d\n", P_SPACE, P_ZERO, PREC);
-
-	if (FLAGS & F_HASH)
-	{
-		if (P_ZERO)
-			ft_putchar('0');
-		if (f->spec == 'x')
-			ft_putchar('x');
-		else if (f->spec == 'X')
-			ft_putchar('X');
-		(f->spec == 'o') ? (COUNT++) : (COUNT += 2);
-		// FLAGS -= F_HASH;
-		// P_ZERO--;
-	}
 }
 
 void	put_ox_value(t_format *f)

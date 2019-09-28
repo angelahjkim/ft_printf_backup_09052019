@@ -104,6 +104,7 @@ void	put_ox_zero(t_format *f);
 void	put_hex_flags(t_format *f);
 void	put_octal(char **format, t_format *f, va_list args);
 void	put_octal_flags(t_format *f);
+void	put_hash_flag(t_format *f);
 void	put_prefix(t_format *f);
 void	put_prefix_ox_xx(t_format *f);
 void	put_ox_value(t_format *f);

@@ -15,8 +15,13 @@ int main(void)
 
 
 
-printf("pf\t<%#.5o>\n", 5236);
-ft_printf("ft\t<%#.5o>\n", 5236);
+printf("pf\t<%.5o>\n", 5236);
+ft_printf("ft\t<%.5o>\n", 5236);
+
+
+// printf("pf\t<%#02.7o>\n", 3267);
+// ft_printf("ft\t<%#02.7o>\n", 3267);
+
 
 // ft_printf("@moulitest: %.d %.0d", 0, 0);
 

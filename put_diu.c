@@ -6,7 +6,7 @@
 /*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/27 18:52:15 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/28 11:28:11 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	put_unsigned(char **format, t_format *f, va_list args)
 		put_pad_int(f);
 	else if (FLAGS & F_MINUS)
 		put_pad_int_minus(f);
-	COUNT += ft_digitcount(f->d_arg);
+	COUNT += ft_digitcount(f->u_arg);
 	(*format)++;
 	reset_struct(f);
 }
