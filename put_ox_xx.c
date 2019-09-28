@@ -6,7 +6,7 @@
 /*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/27 19:52:53 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/27 20:25:55 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,9 @@ void	put_octal_flags(t_format *f)
 
 	// if (f->flags & F_HASH && !f->p && f->ox_arg)
 	
-	if (f->flags & F_HASH && (f->p || WIDTH > 0))
+	if (f->flags & F_HASH)
 		WIDTH--;
+	
 // printf("2 width: %d\n", WIDTH);
 	
 	if (!(FLAGS & F_ZERO) || (FLAGS & F_ZERO && f->p))
@@ -116,8 +117,13 @@ void	put_octal_flags(t_format *f)
 		P_SPACE = 0;
 
 	}
-printf("\n\tspace: %d\tzero: %d\n", P_SPACE, P_ZERO);
+// printf("\n\tspace: %d\tzero: %d\tlen: %d\n", P_SPACE, P_ZERO, LEN);
 	// if (!(FLAGS & F_MINUS))
+
+if (P_ZERO == 0 && (PREC - WIDTH > 0))
+	P_ZERO++;
+
+
 	if (!(FLAGS & F_MINUS))
 		put_pad_int(f);
 	else if (FLAGS & F_MINUS)
