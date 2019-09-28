@@ -6,7 +6,7 @@
 /*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/28 11:51:08 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/28 12:24:44 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,14 +141,19 @@ void	put_hash_flag(t_format *f)
 {
 	int min_chars;
 	
-	min_chars = LEN + 1;
+	// min_chars = LEN + 1;
+	min_chars = LEN;
+	min_chars += (f->ox_arg == 0) ? 0 : 1;
 	if (P_SPACE > 0)
 		min_chars += P_SPACE;
 	if (P_ZERO > 0)
 		min_chars += P_ZERO;
 // printf("min chars: %d\twidth: %d\n", min_chars, WIDTH);
+// printf("\n\tspace: %d\tzero: %d\tlen: %d\tw: %d\tp: %d\n", P_SPACE, P_ZERO, LEN, WIDTH, PREC);
+
 
 	if (WIDTH >= PREC && min_chars > WIDTH)
+	// if (WIDTH >= PREC && PREC > 0 && min_chars > WIDTH && f->ox_arg != 0)
 		P_SPACE--;
 // printf("width: %d\n", WIDTH);
 }
