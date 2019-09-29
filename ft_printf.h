@@ -56,6 +56,7 @@ typedef struct	s_format
 	int			p_val;
 	int			pad_zero;
 	int			pad_space;
+	int			hash_flag;
 }				t_format;
 
 typedef void	put_type_t(char **format, t_format *f, va_list args);

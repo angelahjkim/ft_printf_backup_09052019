@@ -6,7 +6,7 @@
 /*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 19:49:26 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/28 11:08:02 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/28 16:43:11 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ void	ft_newstruct(t_format *f)
 	f->d_str = NULL;
 	f->pad_space = -1;
 	f->pad_zero = -1;
+	f->hash_flag = 0;
 }

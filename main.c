@@ -18,6 +18,9 @@ int main(void)
 printf("pf\t<%#3o>\n", 0);
 ft_printf("ft\t<%#3o>\n", 0);
 
+printf("pf\t<%#.5o>\n", 5263);
+ft_printf("ft\t<%#.5o>\n", 5263);
+
 
 // printf("pf\t<%#02.7o>\n", 3267);
 // ft_printf("ft\t<%#02.7o>\n", 3267);

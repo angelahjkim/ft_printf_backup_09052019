@@ -6,9 +6,25 @@
 /*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/28 12:24:44 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/28 17:17:11 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+/*
+if HASH flag
+
+continue with padding as usual
+
+THEN
+before printing number (where depends on the presence of the MINUS flag)
+
+check if there was '0' padding added
+	if NOT, add a '0'
+	otherwise, do nothing
+
+done.
+*/
 
 #include "ft_printf.h"
 
@@ -101,7 +117,9 @@ void	put_octal_flags(t_format *f)
 
 	// if (f->flags & F_HASH && !f->p && f->ox_arg)
 
-		
+// if (FLAGS & F_HASH && WIDTH > PREC)
+	// WIDTH--;
+
 	if (!(FLAGS & F_ZERO) || (FLAGS & F_ZERO && f->p))
 	{
 		P_ZERO = PREC - LEN;
@@ -116,9 +134,17 @@ void	put_octal_flags(t_format *f)
 // printf("\n\tspace: %d\tzero: %d\tlen: %d\tw: %d\tp: %d\n", P_SPACE, P_ZERO, LEN, WIDTH, PREC);
 	// if (!(FLAGS & F_MINUS))
 
-if (f->flags & F_HASH)
-	put_hash_flag(f);
-	// WIDTH--;
+if (P_ZERO > 0 && !(FLAGS & F_ZERO))
+	f->hash_flag = 1;
+
+
+if (FLAGS & F_HASH && WIDTH > PREC)
+	P_SPACE--;
+
+	
+// if (f->flags & F_HASH)
+// 	put_hash_flag(f);
+	
 
 // if (P_ZERO == 0 && (PREC - WIDTH > 0))
 // 	P_ZERO++;
@@ -137,26 +163,30 @@ if (f->flags & F_HASH)
 	
 }
 
-void	put_hash_flag(t_format *f)
-{
-	int min_chars;
+// void	put_hash_flag(t_format *f)
+// {
+// 	int min_chars;
 	
-	// min_chars = LEN + 1;
-	min_chars = LEN;
-	min_chars += (f->ox_arg == 0) ? 0 : 1;
-	if (P_SPACE > 0)
-		min_chars += P_SPACE;
-	if (P_ZERO > 0)
-		min_chars += P_ZERO;
-// printf("min chars: %d\twidth: %d\n", min_chars, WIDTH);
-// printf("\n\tspace: %d\tzero: %d\tlen: %d\tw: %d\tp: %d\n", P_SPACE, P_ZERO, LEN, WIDTH, PREC);
+// 	// min_chars = LEN + 1
 
+// 	min_chars = LEN;
+// 	min_chars += (WIDTH >= LEN) ? WIDTH : LEN;
+// 	min_chars += (f->ox_arg == 0) ? 0 : 1;
+	
+// // printf("min chars: %d\twidth: %d\n", min_chars, WIDTH);
 
-	if (WIDTH >= PREC && min_chars > WIDTH)
-	// if (WIDTH >= PREC && PREC > 0 && min_chars > WIDTH && f->ox_arg != 0)
-		P_SPACE--;
-// printf("width: %d\n", WIDTH);
-}
+// 	if (P_SPACE > 0)
+// 		min_chars += P_SPACE;
+// 	if (P_ZERO > 0)
+// 		min_chars += P_ZERO;
+
+// // printf("\n\tspace: %d\tzero: %d\tlen: %d\tw: %d\tp: %d\n", P_SPACE, P_ZERO, LEN, WIDTH, PREC);
+
+// 	if (WIDTH >= PREC && min_chars > WIDTH)
+// 	// if (WIDTH >= PREC && PREC > 0 && min_chars > WIDTH && f->ox_arg != 0)
+// 		P_SPACE--;
+// // printf("width: %d\n", WIDTH);
+// }
 
 void	put_prefix_ox_xx(t_format *f)
 {
@@ -171,7 +201,8 @@ void	put_prefix_ox_xx(t_format *f)
 
 	if (FLAGS & F_HASH)
 	{
-		if (P_ZERO)
+		// if (P_ZERO)
+		if (f->hash_flag == 0)
 			ft_putchar('0');
 		if (f->spec == 'x')
 			ft_putchar('x');
@@ -203,10 +234,11 @@ void	put_ox_zero(t_format *f)
 		}
 	}
 	else if (f->w_val == -1 && !(f->p))
-		write(1, "0", 1); 
+		write(1, "0", 1);
 	else if (f->p && f->p_val != -1)
 		return ;
 	COUNT++;
+	f->hash_flag = 1;
 }
 
 void	put_ox_value(t_format *f)
