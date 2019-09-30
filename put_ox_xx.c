@@ -6,7 +6,7 @@
 /*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/28 17:17:11 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/30 12:42:26 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,8 @@ void	put_octal_flags(t_format *f)
 	{
 		P_ZERO = (WIDTH > PREC) ? (WIDTH - LEN) : (PREC - LEN);
 		P_SPACE = 0;
-
+		if (FLAGS & F_HASH && f->p >=0 && f->ox_arg)
+			P_ZERO--;
 	}
 // printf("\n\tspace: %d\tzero: %d\tlen: %d\tw: %d\tp: %d\n", P_SPACE, P_ZERO, LEN, WIDTH, PREC);
 	// if (!(FLAGS & F_MINUS))
@@ -137,8 +138,9 @@ void	put_octal_flags(t_format *f)
 if (P_ZERO > 0 && !(FLAGS & F_ZERO))
 	f->hash_flag = 1;
 
-
-if (FLAGS & F_HASH && WIDTH > PREC)
+if (FLAGS & F_HASH && WIDTH >= PREC && f->ox_arg != 0)
+	P_SPACE--;
+if (FLAGS & F_HASH && f->ox_arg == 0 && PREC == 0)
 	P_SPACE--;
 
 	
@@ -190,11 +192,17 @@ if (FLAGS & F_HASH && WIDTH > PREC)
 
 void	put_prefix_ox_xx(t_format *f)
 {
-	while (PREC > LEN)
+	if (FLAGS & F_ZERO && FLAGS & F_HASH && f->p)
 	{
-		ft_putnbr(0);
-		COUNT++;
 		PREC--;
+		P_ZERO--;
+	}
+	while (PREC-- > LEN)
+	// while (P_ZERO)
+	{
+		write(1, "0", 1);
+		COUNT++;
+		// PREC--;
 		P_ZERO--;
 	}
 // printf("\n\tspace: %d\tzero: %d\tprec: %d\n", P_SPACE, P_ZERO, PREC);
