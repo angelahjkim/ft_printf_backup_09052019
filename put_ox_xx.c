@@ -6,7 +6,7 @@
 /*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/30 12:42:26 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/30 12:53:44 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,22 @@ void	put_hex(char **format, t_format *f, va_list args)
 {
 	uint64_t tmp;
 
-	get_mod_arg_ox_xx(f, args);
-	if (f->ox_arg == 0 && f->w_val == -1)
-		put_ox_zero(f);
-	else
-	{
+	f->ox_arg = va_arg(args, uint64_t);
+
 		tmp = f->ox_arg;
-		while (tmp / 16)
+		while (tmp / 8)
 		{
-			f->arg_len++;
-			tmp /= 16;
+			LEN++;
+			tmp /= 8;
 		}
-		f->arg_len++;
-		f->count += f->arg_len;
-		put_hex_flags(f);
-	}
+		LEN++;
+		COUNT += LEN;
+
+if (f->ox_arg == 0 && f->p == 1 && f->p_val <= 0)
+	P_SPACE--;
+
+		put_hex_flags(f)
+
 	(*format)++;
 	reset_struct(f);
 }
@@ -55,43 +56,66 @@ void	put_hex_flags(t_format *f)
 {
 	if (f->flags & F_HASH)
 		f->w_val -= 2;
-	if (f->flags & F_MINUS)
+
+if (!(FLAGS & F_ZERO) || (FLAGS & F_ZERO && f->p))
 	{
-		put_prefix(f);
-		(f->ox_arg != 0) ? ft_puthex_lower(f->ox_arg) : ft_putchar(' ');
-		put_padding(f);
-		f->flags -= F_MINUS;
+		P_ZERO = PREC - LEN;
+		P_SPACE = (WIDTH -= (PREC > LEN) ? PREC : LEN);
 	}
-	else if (f->flags & F_ZERO && f->flags & F_HASH)
+	else if (FLAGS & F_ZERO)
 	{
-		put_prefix(f);
-		put_padding(f);
-		if (f->spec == 'x')
-			(f->ox_arg != 0) ? ft_puthex_lower(f->ox_arg) : ft_putchar(' ');
-		else if (f->spec== 'X')
-			(f->ox_arg != 0) ? ft_puthex_upper(f->ox_arg) : ft_putchar(' ');
+		P_ZERO = (WIDTH > PREC) ? (WIDTH - LEN) : (PREC - LEN);
+		P_SPACE = 0;
+		if (FLAGS & F_HASH && f->p >=0 && f->ox_arg)
+			P_ZERO--;
 	}
-	else
-	{
-		put_padding(f);
-		put_prefix(f);
-		if (f->spec == 'x')
-			(f->ox_arg != 0) ? ft_puthex_lower(f->ox_arg) : ft_putchar(' ');
-		else if (f->spec== 'X')
-			(f->ox_arg != 0) ? ft_puthex_upper(f->ox_arg) : ft_putchar(' ');
-	}
+
+if (P_ZERO > 0 && !(FLAGS & F_ZERO))
+	f->hash_flag = 1;
+
+if (FLAGS & F_HASH && WIDTH >= PREC && f->ox_arg != 0)
+	P_SPACE--;
+if (FLAGS & F_HASH && f->ox_arg == 0 && PREC == 0)
+	P_SPACE--;
+
+	if (!(FLAGS & F_MINUS))
+		put_pad_int(f);
+	else if (FLAGS & F_MINUS)
+		put_pad_int_minus(f);
+
+	// if (f->flags & F_MINUS)
+	// {
+	// 	put_prefix(f);
+	// 	(f->ox_arg != 0) ? ft_puthex_lower(f->ox_arg) : ft_putchar(' ');
+	// 	put_padding(f);
+	// 	f->flags -= F_MINUS;
+	// }
+	// else if (f->flags & F_ZERO && f->flags & F_HASH)
+	// {
+	// 	put_prefix(f);
+	// 	put_padding(f);
+	// 	if (f->spec == 'x')
+	// 		(f->ox_arg != 0) ? ft_puthex_lower(f->ox_arg) : ft_putchar(' ');
+	// 	else if (f->spec== 'X')
+	// 		(f->ox_arg != 0) ? ft_puthex_upper(f->ox_arg) : ft_putchar(' ');
+	// }
+	// else
+	// {
+	// 	put_padding(f);
+	// 	put_prefix(f);
+	// 	if (f->spec == 'x')
+	// 		(f->ox_arg != 0) ? ft_puthex_lower(f->ox_arg) : ft_putchar(' ');
+	// 	else if (f->spec== 'X')
+	// 		(f->ox_arg != 0) ? ft_puthex_upper(f->ox_arg) : ft_putchar(' ');
+	// }
 }
 
 void	put_octal(char **format, t_format *f, va_list args)
 {
 	uint64_t tmp;
 
-	// get_mod_arg_ox_xx(f, args);
 	f->ox_arg = va_arg(args, uint64_t);
-	// if (f->ox_arg == 0 && f->w_val == -1)
-	// 	put_ox_zero(f);
-	// else
-	// {
+
 		tmp = f->ox_arg;
 		while (tmp / 8)
 		{
@@ -113,13 +137,6 @@ if (f->ox_arg == 0 && f->p == 1 && f->p_val <= 0)
 
 void	put_octal_flags(t_format *f)
 {
-// printf("\n\tneg: %d\tlen: %d\twidth: %d\tprec: %d\n", (f->d_arg < 0) ? 1 : 0, LEN, WIDTH, PREC);
-
-	// if (f->flags & F_HASH && !f->p && f->ox_arg)
-
-// if (FLAGS & F_HASH && WIDTH > PREC)
-	// WIDTH--;
-
 	if (!(FLAGS & F_ZERO) || (FLAGS & F_ZERO && f->p))
 	{
 		P_ZERO = PREC - LEN;
@@ -143,18 +160,6 @@ if (FLAGS & F_HASH && WIDTH >= PREC && f->ox_arg != 0)
 if (FLAGS & F_HASH && f->ox_arg == 0 && PREC == 0)
 	P_SPACE--;
 
-	
-// if (f->flags & F_HASH)
-// 	put_hash_flag(f);
-	
-
-// if (P_ZERO == 0 && (PREC - WIDTH > 0))
-// 	P_ZERO++;
-
-// if (f->flags & F_HASH)
-// 	put_hash_flag(f);
-
-
 	if (!(FLAGS & F_MINUS))
 		put_pad_int(f);
 	else if (FLAGS & F_MINUS)
@@ -164,31 +169,6 @@ if (FLAGS & F_HASH && f->ox_arg == 0 && PREC == 0)
 	// 	put_ox_zero(f);
 	
 }
-
-// void	put_hash_flag(t_format *f)
-// {
-// 	int min_chars;
-	
-// 	// min_chars = LEN + 1
-
-// 	min_chars = LEN;
-// 	min_chars += (WIDTH >= LEN) ? WIDTH : LEN;
-// 	min_chars += (f->ox_arg == 0) ? 0 : 1;
-	
-// // printf("min chars: %d\twidth: %d\n", min_chars, WIDTH);
-
-// 	if (P_SPACE > 0)
-// 		min_chars += P_SPACE;
-// 	if (P_ZERO > 0)
-// 		min_chars += P_ZERO;
-
-// // printf("\n\tspace: %d\tzero: %d\tlen: %d\tw: %d\tp: %d\n", P_SPACE, P_ZERO, LEN, WIDTH, PREC);
-
-// 	if (WIDTH >= PREC && min_chars > WIDTH)
-// 	// if (WIDTH >= PREC && PREC > 0 && min_chars > WIDTH && f->ox_arg != 0)
-// 		P_SPACE--;
-// // printf("width: %d\n", WIDTH);
-// }
 
 void	put_prefix_ox_xx(t_format *f)
 {
