@@ -19,6 +19,9 @@ int main(void)
 // ft_printf("ft\t<%#02.7x>\n", 3267);
 
 
+printf("pf\t<% u>\n", 4294967296);
+ft_printf("ft\t<% u>\n", 4294967296);
+
 printf("pf\t<%#8.5x>\n", 21);
 ft_printf("ft\t<%#8.5x>\n", 21);
 
