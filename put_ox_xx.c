@@ -6,7 +6,7 @@
 /*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/30 19:10:55 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/30 19:21:46 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	put_hex_flags(t_format *f)
 if (!(FLAGS & F_ZERO) || (FLAGS & F_ZERO && f->p))
 	{
 		P_ZERO = PREC - LEN;
-		P_SPACE = (WIDTH -= (PREC > LEN) ? PREC : LEN);	
+		P_SPACE = (WIDTH -= (PREC > LEN) ? PREC : LEN);
 	}
 	else if (FLAGS & F_ZERO)
 	{
@@ -82,8 +82,8 @@ if (!(FLAGS & F_ZERO) || (FLAGS & F_ZERO && f->p))
 // if (P_ZERO > 0 && !(FLAGS & F_ZERO))
 // 	f->hash_flag = 1;
 
-if (FLAGS & F_HASH && WIDTH >= PREC && f->ox_arg != 0)
-	P_SPACE -= 2;
+// if (FLAGS & F_HASH && WIDTH >= PREC && f->ox_arg != 0)
+// 	P_SPACE -= 2;
 	// P_SPACE--;
 if (FLAGS & F_HASH && f->ox_arg == 0 && PREC == 0)
 	P_SPACE--;

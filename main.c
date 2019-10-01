@@ -14,17 +14,12 @@ int main(void)
 	// int *ptr = &d;
 
 
-printf("pf\t<%#8x>\n", 42);
-ft_printf("ft\t<%#8x>\n", 42);
 
 printf("pf\t<%#02.7x>\n", 3267);
 ft_printf("ft\t<%#02.7x>\n", 3267);
 
-// printf("pf\t<%#8.5x>\n", 21);
-// ft_printf("ft\t<%#8.5x>\n", 21);
-
-// printf("pf\t<%#-8.5x>\n", 34);
-// ft_printf("ft\t<%#-8.5x>\n", 34);
+printf("pf\t<%#08.5x>\n", 34);
+ft_printf("ft\t<%#08.5x>\n", 34);
 
 
 
