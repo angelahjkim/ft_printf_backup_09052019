@@ -6,7 +6,7 @@
 /*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/30 18:25:40 by angkim           ###   ########.fr       */
+/*   Updated: 2019/09/30 19:10:55 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,25 @@ if (f->ox_arg == 0 && f->p == 1 && f->p_val <= 0)
 void	put_hex_flags(t_format *f)
 {
 	// if (f->flags & F_HASH && LEN > 2)
-	// 	LEN++; 
+	// 	LEN++;
 
-	// if (FLAGS & F_HASH)
-	// {
-	// 	P_ZERO = 
-	// 	P_SPACE 
-	// }
+	if (FLAGS & F_HASH && f->ox_arg)
+		(WIDTH > PREC) ? WIDTH -= 2 : PREC--;
+
 
 if (!(FLAGS & F_ZERO) || (FLAGS & F_ZERO && f->p))
 	{
 		P_ZERO = PREC - LEN;
-		P_SPACE = (WIDTH -= (PREC > LEN) ? PREC : LEN);
+		P_SPACE = (WIDTH -= (PREC > LEN) ? PREC : LEN);	
 	}
 	else if (FLAGS & F_ZERO)
 	{
 		P_ZERO = (WIDTH > PREC) ? (WIDTH - LEN) : (PREC - LEN);
 		P_SPACE = 0;
-		if (FLAGS & F_HASH && f->p >=0 && f->ox_arg)
+		// if (FLAGS & F_HASH && f->p >=0 && f->ox_arg)
 		// if (FLAGS & F_HASH)
-			P_ZERO -= 2;
+			// P_ZERO -=  2;
+			// P_ZERO--;
 	}
 
 
