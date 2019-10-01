@@ -19,10 +19,14 @@ void	put_pad_int(t_format *f)
 	// 	put_pad_int_zero(f);
 	// 	return ;
 	// }
-	if (f->d_arg == 0 && f->p == 1 && f->p_val <= 0)
+
+	if (f->d_arg == 0 && f->p == 1 && PREC <= 0)
 	{
-		P_SPACE++;
-		WIDTH = -1;
+		if (f->spec == 'd' || f->spec == 'o')
+		{
+			P_SPACE++;
+			WIDTH = -1;
+		}
 	}
 
 	while (P_SPACE-- > 0)
@@ -31,7 +35,6 @@ void	put_pad_int(t_format *f)
 		COUNT++;
 	}
 	// if (!(FLAGS & F_ZERO))
-
 	(f->d_arg >= 0) ? put_prefix_int(f) : put_prefix_int_neg(f);
 	if (f->spec == 'o' || f->spec == 'x' || f->spec == 'X')
 		(f->ox_arg > 0) ? put_prefix_ox_xx(f) : put_ox_zero(f);
