@@ -14,15 +14,11 @@
 
 void	put_pad_int(t_format *f)
 {
-	// if (FLAGS & F_ZERO)
-	// {
-	// 	put_pad_int_zero(f);
-	// 	return ;
-	// }
 
 	if (f->d_arg == 0 && f->p == 1 && PREC <= 0)
 	{
-		if (f->spec == 'd' || f->spec == 'o')
+		// if (f->spec == 'd' || f->spec == 'i' || f->spec == 'o')
+		if (!(f->spec == 'x' || f->spec == 'X'))
 		{
 			P_SPACE++;
 			WIDTH = -1;

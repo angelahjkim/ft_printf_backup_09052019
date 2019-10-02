@@ -6,7 +6,7 @@
 /*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/30 19:21:46 by angkim           ###   ########.fr       */
+/*   Updated: 2019/10/02 09:20:25 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ void	put_hex_flags(t_format *f)
 	// if (f->flags & F_HASH && LEN > 2)
 	// 	LEN++;
 
-	if (FLAGS & F_HASH && f->ox_arg)
+	if (FLAGS & F_HASH && f->ox_arg && WIDTH > PREC)
 		(WIDTH > PREC) ? WIDTH -= 2 : PREC--;
 
 
-if (!(FLAGS & F_ZERO) || (FLAGS & F_ZERO && f->p))
+if (!(FLAGS & F_ZERO) || (FLAGS & F_ZERO && f->p && WIDTH > PREC))
 	{
 		P_ZERO = PREC - LEN;
 		P_SPACE = (WIDTH -= (PREC > LEN) ? PREC : LEN);
@@ -159,7 +159,7 @@ if (FLAGS & F_HASH && f->ox_arg == 0 && PREC == 0)
 
 void	put_prefix_ox_xx(t_format *f)
 {
-	if (FLAGS & F_ZERO && FLAGS & F_HASH && f->p)
+	if (f->spec == 'o' && FLAGS & F_ZERO && FLAGS & F_HASH && f->p)
 	{
 		PREC--;
 		P_ZERO--;

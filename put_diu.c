@@ -6,7 +6,7 @@
 /*   By: angkim <angkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 15:26:00 by angkim            #+#    #+#             */
-/*   Updated: 2019/09/28 11:28:11 by angkim           ###   ########.fr       */
+/*   Updated: 2019/10/02 09:41:25 by angkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,18 @@ void	put_int(char **format, t_format *f, va_list args)
 
 void	put_int_value(t_format *f)
 {
+// printf("HERE: PREC = %d\n", PREC);
 	if (f->d_arg == 0 && f->p && (PREC == 0 || PREC == 1))
 	{
+		if (f->spec == 'd' || f->spec == 'i')
+		{
 			if (WIDTH > -1)
 				write(1, " " , 1);
 			else
 				COUNT--;
+		}
+		else
+			return ;
 	}
 	else
 	{
@@ -96,22 +102,3 @@ void	put_unsigned(char **format, t_format *f, va_list args)
 	(*format)++;
 	reset_struct(f);
 }
-
-// void	put_unsigned(char **format, t_format *f, va_list args)
-// {
-// 	get_mod_arg_u(f, args);
-// 	LEN = ft_digitcount(f->u_arg);
-// 	if (f->flags & F_MINUS)
-// 	{
-// 		ft_putnbr(f->u_arg);
-// 		put_padding(f);
-// 	}
-// 	else
-// 	{
-// 		put_padding(f);
-// 		ft_putnbr_u(f->u_arg);
-// 	}
-// 	f->count += ft_digitcount_u(f->u_arg);
-// 	(*format)++;
-// 	reset_struct(f);
-// }

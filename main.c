@@ -15,16 +15,9 @@ int main(void)
 
 
 
-printf("pf\t<%#02.7x>\n", 3267);
-ft_printf("ft\t<%#02.7x>\n", 3267);
 
-printf("pf\t<%#08.5x>\n", 34);
-ft_printf("ft\t<%#08.5x>\n", 34);
-
-
-
-// printf("pf\t<%#02.7o>\n", 3267);
-// ft_printf("ft\t<%#02.7o>\n", 3267);
+printf("pf\t<%+5.0d>\n", 0);
+ft_printf("ft\t<%+5.0d>\n", 0);
 
 
 // ft_printf("@moulitest: %.d %.0d", 0, 0);
